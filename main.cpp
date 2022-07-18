@@ -1,12 +1,12 @@
 #include <iostream>
-#include <string.h>
+#include <string>
 #include <fstream>
 #include <sstream>
-
+#include <cstring>
 
 using namespace std;
 //crear usuarios
-void create_user(int );
+void create_user(string);
 //validar clave
 void validate_pass(string);
 
@@ -20,7 +20,7 @@ int main()
 
     switch(choose){
     case 1:{
-        int cedula;
+        string cedula;
         create_user(cedula);
 
     }
@@ -32,19 +32,36 @@ int main()
         break;
     }
 }
-void create_user(int){
-    cout<<"ingrese el numero de cedula: ";
-    int cedula;
-    cin>>cedula;
-    try{
-    if(isalpha(cedula))
-       cout<<"cedula ingresada correctamente. ";
-    }
-    catch(int cedula){
-        cout<<"solo debes ingresar numeros...";
-    }
-}
 
+//funcion que permite al administrador crear un usuario
+void create_user(string){
+
+    string cedula,saldo,clave;
+    int i=0;
+    try {                                       //try catch que valida solo el ingreso de numeros en la cedula
+        cout<<"ingrese el numero de cedula: ";
+        cin>>cedula;
+        while(cedula[i]){
+            if(isalpha(cedula[i]))throw'1';
+            i++;
+        }
+        char c=',',p='.';
+        cedula.append(1,c );//add a la cedula una coma al final para codificar el archivo
+        cout<<"digite la clave para el usuario: "<<cedula<<endl;
+        cin>>clave;
+        clave.append(1,c);//add a la clave coma al final para codificar archivo
+        cout<<"digite el saldo para el usuario: "<<cedula<<endl;
+        cin>>saldo;
+
+        saldo.append(1,p);
+        cout<<"los datos ingresados fueron: "<<endl<<cedula<<clave<<saldo<<endl;
+    }
+    catch(char c) {
+        if(c=='1')
+        cout<<"sr. admin solo puede ingresar numeros en la cedula..."<<endl;
+    }
+
+}
 void validate_pass(string){
 
 }
