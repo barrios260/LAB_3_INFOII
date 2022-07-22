@@ -1,81 +1,64 @@
 #include <iostream>
-#include <string>
-#include <fstream>
-#include <sstream>
-#include <cstring>
-#include <bitset>
-using namespace std;
-//crear usuarios
-void create_user(string);
-//validar clave
-void validate_pass(string);
-//funcion a binario
-string TextToBinaryString(string words);
 
+using namespace std;
+class marcador{
+    private:
+        char *color;
+        unsigned short int cant_tinta;
+        float alto;
+        float grosor;
+        char *material_externo;
+        bool tapita;
+    public:
+        marcador();
+        ~marcador();
+
+        bool destapar_por_voz(char *palabra);
+        char *getColor() const;
+        void setColor(char *newColor);
+
+};
 int main()
 {
-    int choose;
-    cout<<"---elija como quiere ingresar.---"<<endl;
-    cout<<"1. como administrador."<<endl;
-    cout<<"2. como usuario."<<endl;
-    cin>>choose;
+    marcador sharpie;//crear instancia del objeto
+    marcador berol;
+    cout<<sharpie.getColor()<<endl;
+    sharpie.setColor("fucsia");
+    cout<<sharpie.getColor()<<endl;
+     cout<<berol.getColor()<<endl;
+    return 0;
+}
+/*
+ * objeto marcador
+ * caracteristicas estructurales-->atributes
+ * color --> char*
+ * tamaño **> alto y grosor
+ * cantidad de tinta --> int
+ * material externo --> metal,plastico,carton
+ * tapita-->bool
+ * caracteristicas funcionales
+ * se tapa y destapa por voz--> bool destapar por voz(char *palabra);
+ *
+ * */
 
-    switch(choose){
-    case 1:{
-        string cedula;
-        create_user(cedula);
+marcador::marcador()
+{
+    cout<<"ejecutando constructor de clase marcador "<<endl;
+    color="negro";
 
-    }
-
-
-        break;
-    case 2:{
-    }
-        break;
-    }
 }
 
-//funcion que permite al administrador crear un usuario
-void create_user(string){
-
-    string cedula,saldo,clave,id,pass,mon,datos1;
-    int i=0;
-    try {                                       //try catch que valida solo el ingreso de numeros en la cedula
-        cout<<"ingrese el numero de cedula: ";
-        cin>>cedula;
-        while(cedula[i]){
-            if(isalpha(cedula[i]))throw'1';
-            i++;
-        }
-        char c=',',p='.';
-        cedula.append(1,c );//add a la cedula una coma al final para codificar el archivo
-        id=TextToBinaryString(cedula);
-        cout<<"digite la clave para el usuario: "<<cedula<<endl;
-        cin>>clave;
-        clave.append(1,c);//add a la clave coma al final para codificar archivo
-        pass=TextToBinaryString(clave);
-        cout<<"digite el saldo para el usuario: "<<cedula<<endl;
-        cin>>saldo;
-
-        saldo.append(1,p);
-        mon=TextToBinaryString(saldo);
-    }
-    catch(char c) {
-        if(c=='1')
-        cout<<"sr. admin solo puede ingresar numeros en la cedula..."<<endl;
-    }
-datos1=id+pass+mon;
-cout<<datos1<<endl;
+marcador::~marcador()
+{
+    cout<<"ejectuando destructor de clase marcador"<<endl;
 }
 
-void validate_pass(string){
-
-}
-string TextToBinaryString(string words) {
-    string binaryString = "";
-    for (char& _char : words) {
-        binaryString +=bitset<8>(_char).to_string();
-    }
-    return binaryString;
+char *marcador::getColor() const
+{
+    return color;
 }
 
+void marcador::setColor(char *newColor)
+{
+    color = newColor;
+}
