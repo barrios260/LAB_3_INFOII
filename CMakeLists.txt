@@ -1,8 +1,8 @@
 cmake_minimum_required(VERSION 3.5)
 
-project(Lab_3 LANGUAGES CXX)
+project(LAB_3_INFO2 LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-add_executable(Lab_3 main.cpp)
+add_executable(LAB_3_INFO2 main.cpp)
