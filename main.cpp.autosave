@@ -12,7 +12,8 @@ string TextToBinary(string);
 //funcion para encriptar
 
 string BinaryToText(string);
-void encrypted();
+
+string encrypted();
 //funcion que retorna el archivo txt leido
 string return_read();
 
@@ -23,13 +24,8 @@ int main()
     cout<<"1. como administrador."<<endl;
     cout<<"2. como usuario."<<endl;
     cin>>choose;
-    string jeje="01000001";
-    cout<<BinaryToText(jeje)<<endl;
-
     switch(choose){
-
     case 1:{
-        //encrypted();
         string linea,aux,clave;
         ifstream archivo("sudo.txt");
         getline(archivo,linea);//linea extraida desde el archivo sudo.txt
@@ -42,14 +38,11 @@ int main()
     }
 
         archivo.close();
-
         cout<<"***ingreso exitoso al sistema como usuario administrador*** "<<endl;
         cout<<"------------------------------------------------"<<endl;
         cout<<"digite los datos para crear los usuarios "<<endl;
         string cedula;
         create_user(cedula);
-        //return_read();
-        //validate_pass();
     }
         break;
     case 2:{
@@ -58,7 +51,13 @@ int main()
     }
 }
 
-//funcion que permite al administrador crear un usuario
+/*funciones para el administrador 
+ * funcion para crear un usuario
+ * funcion para convertir caracteres a binario
+ * funcion para convertir binario a caracteres
+ * funcion para encriptar
+ * funcion para desencriptar*/
+
 void create_user(string){
     string cedula,clave,id,pass,mon,datos1,saldoo;//datos pedidos para crear usuario
     char c=',',p='.';
@@ -117,35 +116,15 @@ finalizo=true;
         to_string(saldo);
         saldoo.append(1,p);
         mon=TextToBinary(saldoo);
-
-//datos1=id+pass+mon;
-//cout<<datos1<<endl;
 }
 
-/*
- * funcion que realiza la conversion de caracteres ascci a
- * binario para la encriptacion de la contraseña del admin
-*/
+
 string TextToBinary(string words) {
-    string binaryString = "";
+    string binary = "";
     for (char& _char : words) {
-        binaryString +=bitset<8>(_char).to_string();
+        binary +=bitset<8>(_char).to_string();
     }
-    return binaryString;
-}
-/*funcion que realizara la encriptacion de la contraseña del admin*/
-void encrypted(){
-    string aux,linea;
-    ifstream archivo("sudo.txt");
-    ofstream archivo1("sudo.txt");
-    getline(archivo,linea);//linea extraida desde el archivo sudo.txt
-    aux=TextToBinary(linea);
-
-    archivo1<<aux;
-
-    archivo1.close();
-    archivo.close();
-
+    return binary;
 }
 
 string BinaryToText(string n){
@@ -163,6 +142,17 @@ string BinaryToText(string n){
         text+=decimal;
     }
 return text;
+}
+
+string encrypted(int x,string text){
+    string letra,binario;
+    int esp=0,sup,largo=binario.length();
+    binario=TextToBinary(text);
+    
+    for(int i=0;i<largo;i++){
+        
+    }
+
 }
 
 
